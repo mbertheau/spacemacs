@@ -32,6 +32,9 @@
 PLISTS has either the form (\"fontname\" :prop1 val1 :prop2 val2 ...)
 or is a list of such. The first font that can be found will be used.
 
+(set-fontset-font "fontset-default" 'hangul '("NanumGothic" . "unicode-bmp"))
+(set-fontset-font "fontset-default" 'han '("Droid Sans Fallback" . "unicode-bmp"))
+
 The return value is nil if no font was found, truthy otherwise."
   (unless (listp (car plists))
     (setq plists (list plists)))
@@ -90,7 +93,10 @@ The return value is nil if no font was found, truthy otherwise."
                                 '(#x2295 . #x22a1) fallback-spec nil 'prepend)
               ;; new version lighter
               (set-fontset-font "fontset-default"
-                                '(#x2190 . #x2200) fallback-spec2 nil 'prepend))))
+                                '(#x2190 . #x2200) fallback-spec2 nil 'prepend)
+              (set-fontset-font "fontset-default" 'hangul '("NanumGothic" . "unicode-bmp"))
+              (set-fontset-font "fontset-default" 'han '("Droid Sans Fallback" . "unicode-bmp"))
+              )))
         (throw 'break t)))
     nil))
 
